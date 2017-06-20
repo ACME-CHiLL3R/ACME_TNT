@@ -3,19 +3,19 @@ Terrible Nuke Territory - This script bombs randomized or static locations on yo
 
 First of all ---> CREDITS
 ****************************************************************************************************************
-                                                                                                               *
- This is an adaption from "mmmyum's animated air raid dayz"                                                    *
- So all credits for this goes to mmmyum                                                                        *
-                                                                                                               *
+                                                                                                               
+ This is an adaption from "mmmyum's animated air raid dayz"
+ So all credits for this goes to mmmyum                                                                        
+                                                                                                               
    *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   * 
-                                                                                                               *    
- Special thanks to:                                                                                            *
-                    $p4rkY ---------- for beeing my Mentor                                                     *
-                    adR1 ------------ for beeing testing and translation guy                                   *
-                    Eichi ----------- for helping with the TraderZone detection                                *
-                    My wife --------- for making awesome coffee                                                *
-                    Saecco Minuto --- cause thats the reason why my wife could make such awesome coffee        *
-                                                                                                               *
+                                                                                                                
+ Special thanks to:                                                                                            
+                    $p4rkY ---------- for beeing my Mentor                                                     
+                    adR1 ------------ for beeing testing and translation guy                                   
+                    Eichi ----------- for helping with the TraderZone detection                                
+                    My wife --------- for making awesome coffee                                                
+                    Saecco Minuto --- cause thats the reason why my wife could make such awesome coffee        
+                                                                                                               
 ****************************************************************************************************************
 INSTALLATION
 
