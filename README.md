@@ -20,7 +20,7 @@ First of all
 ***
 ### INSTALLATION
 
-This step is very hard, so if you are not familiar with scripting or setting up a arma 3 server with exile, I advise you to not install this on your server.....!
+This step is very hard, so if you are not familiar with scripting or setting up an arma 3 server with exile, I advise you to not install this on your server.....!
 
 Just joking...
 
