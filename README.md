@@ -23,7 +23,8 @@ This step is very hard, so if you are not familiar with scripting or setting up 
 Just joking...
 
 #### Step 1
-Download the File, open **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and read the Setup-Part between line 30 and 90. change the setups to your wishes and needs. If you dont want to use random locations you need to change line 75 to 79 for the static location. For now it is set to Balota airstrip on Chernarus
+Download the File, open **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and read the Setup-Part between line 30 and 90. change the setups to your wishes and needs. If you dont want to use random locations you need to change line 75 to 79 for the static location. For now it is set to Balota airstrip on Chernarus.
+If you are using DMS - Missions AI you need to check the freeze option in the config of DMS. If ***DMS_ai_freeze_Only_DMS_AI*** is false, the bomber will not bomb his target until a player is near to him to unfreeze him...
 
 #### Step 2
 Pack the folder into a pbo. Upload the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
