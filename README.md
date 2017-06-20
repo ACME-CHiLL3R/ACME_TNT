@@ -67,8 +67,6 @@ Open your **__discription.ext__** and add the following lines to it. If you alre
             };
 ```
 
-To edit settings open **__ACME_TNT\server\ACME_TNT.sqf__**
-Look to the lines below **__Start Setup - change settings below to your wishes__**
-If you dont want to use random locations you need to change line 75 to 79 for the static location. For now it is set to Balota airstrip on Chernarus
+The script was original made for Chernarus, but you can use it on every map with random locations without any changes. Only thing, if you want to have a static location, you need to set it up. You will see what you need to change by looking to ACME_TNT.sqf.... 
 
 Hope you have fun with it
