@@ -15,7 +15,8 @@ First of all
  >   **Eichi** --> for helping with the TraderZone detection                     
  >   **Squanchy** --> for beta-testing the files and pointing to some errors                                         
  >   **My wife** --> for making awesome coffee                                                                                
- >   **Saecco Minuto** --> because thats the reason why my wife could make such awesome coffee                                                                                                                      
+ >   **Saecco Minuto** --> because thats the reason why my wife could make such awesome coffee                             
+ >   **Kids** --> dont forget the Kids
 ***
 ### INSTALLATION
 
