@@ -22,12 +22,15 @@ This step is very hard, so if you are not familiar with scripting or setting up 
 Just joking...
 
 #### Step 1
-Download the File, put the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
+Download the File, open **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and read the Setup-Part between line 30 and 90. change the setups to your wishes and needs. If you dont want to use random locations you need to change line 75 to 79 for the static location. For now it is set to Balota airstrip on Chernarus
 
 #### Step 2
-If you like to have sounds of hooting sirens, put the Folder **__Sounds__** to your mission.pbo (for example **__Exile.Altis.pbo__**) Otherwise skip ***Step 3*** and go to **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and set on line 69 _ambientSound to **__false__**.
+Pack the folder into a pbo. Upload the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
 
 #### Step 3
+If you like to have sounds of hooting sirens, put the Folder **__Sounds__** to your mission.pbo (for example **__Exile.Altis.pbo__**) Otherwise skip ***Step 4*** and go to **__ACME_TNT.pbo\server\ACME_TNT.sqf__** , set on line 69 _ambientSound to **__false__**.
+
+#### Step 4
 Open your **__discription.ext__** and add the following lines to it. If you already have an existing **__CfgSound__**, merge it to that one...
 ```c++
             class CfgSounds
@@ -59,9 +62,9 @@ Open your **__discription.ext__** and add the following lines to it. If you alre
                 };
             };
 ```
-Done.... Thats it...
 
 To edit settings open **__ACME_TNT\server\ACME_TNT.sqf__**
 Look to the lines below **__Start Setup - change settings below to your wishes__**
+If you dont want to use random locations you need to change line 75 to 79 for the static location. For now it is set to Balota airstrip on Chernarus
 
 Hope you have fun with it
