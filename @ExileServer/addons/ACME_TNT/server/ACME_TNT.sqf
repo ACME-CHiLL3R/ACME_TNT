@@ -148,8 +148,8 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
     //CREATE TARGET///////////////
-    _loc = createVehicle ["HeliHEmpty", _coords,[], 0, "NONE"];
-    _target = createVehicle ["HeliHEmpty",position _loc,[], 0, "NONE"];  
+    _loc = createVehicle ["Land_HelipadEmpty_F", _coords,[], 0, "NONE"];
+    _target = createVehicle ["Land_HelipadEmpty_F",position _loc,[], 0, "NONE"];  
     _posdebug = position _target;
     if (_debugRPT) then {diag_log format ["| ACME TNT | SEL: %1 | TARGET: %2 | CITY: %3",_posdebug,_coords,_city];};
     uisleep 2;
@@ -166,7 +166,7 @@
     _bomber flyInHeight 100;
     _bomber forceSpeed 300;
     //Create an Invisibile Landingpad near place to be bombed
-    _landingzone2 = createVehicle ["HeliHEmpty", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
+    _landingzone2 = createVehicle ["Land_HelipadEmpty_F", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 | BOMBER POS: %2 | POS LAND: %3 | TARGET: %4",str(getPosATL _landingzone2),str(getPosATL _bomber),str(_positionLand),str(getPosATL _target)];};
     _aigroup2 = creategroup civilian;
     _jetPilot = _aigroup2 createUnit ["B_T_Pilot_F",getPos _bomber,[],0,"FORM"];
@@ -206,8 +206,8 @@
      
     _pos = position _target;
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
-    _speaker1 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
-    _speaker2 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
+    _speaker1 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
+    _speaker2 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
     _pos1 = position _speaker1;
     if (_ambientSound) then {playSound3D [_alarm1, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
     uisleep 2;
@@ -287,7 +287,7 @@
     While {_duration > 0} do {
     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
 
-            _speaker3 = createVehicle ["HeliHEmpty",position _target,[], _ray, "NONE"];
+            _speaker3 = createVehicle ["Land_HelipadEmpty_F",position _target,[], _ray, "NONE"];
             if (_ambientSound) then {playSound3D [_mortar, _speaker3, false, getPos _speaker3, 15, 1, _dropdist];};
             uisleep 2;
             _espl = createVehicle [_rdmBomb,position _speaker3,[], 0, "NONE"];
@@ -321,7 +321,7 @@
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
     uisleep 5;
     _safetyEndPos = [[_safetyPoint select 0,_safetyPoint select 1,0],0,1000,4,1,2000,0] call BIS_fnc_findSafePos;
-    _safetyEnd = createVehicle ["HeliHEmpty", _safetyEndPos,[], 0, "NONE"];
+    _safetyEnd = createVehicle ["Land_HelipadEmpty_F", _safetyEndPos,[], 0, "NONE"];
     //Adding a last Waypoint up in the North, to send bomber away after completion. Change this location (_safetyPoint) to where you want the AI to seem to originate from
     _wp3 = _aigroup2 addWaypoint [_safetyEndPos, 0];
     _wp3 setWaypointType "MOVE"; //maybe change to land?
