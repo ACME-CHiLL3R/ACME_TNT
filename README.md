@@ -63,7 +63,7 @@ Open your discription.ext and add the following lines to it. If you have already
                 titles[] = {};
                 };
             };
-            ```
+```
 Done.... Thats it...
 
 To edit settings open ACME_TNT\server\ACME_TNT.sqf
