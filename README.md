@@ -12,7 +12,8 @@ First of all
  #### Special thanks to:                                                                                            
  >   **$p4rkY** --> because he is my Mentor                                                     
  >   **adR1** --> because he is my testing and translation guy                                   
- >   **Eichi** --> for helping with the TraderZone detection                                
+ >   **Eichi** --> for helping with the TraderZone detection 
+ >   **Squanchy** --> for beta-testing the files and pointing to some errors
  >   **My wife** --> for making awesome coffee                                                
  >   **Saecco Minuto** --> because thats the reason why my wife could make such awesome coffee                                                                                                                      
 ***
