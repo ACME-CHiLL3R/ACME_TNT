@@ -1,5 +1,5 @@
-# ACME_TNT
->Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
+# ACME_TNT - for Exile
+>Terrible Nuke Territory - This script bombs randomized or static locations on your map.  
 ***
 First of all
 ### CREDITS
