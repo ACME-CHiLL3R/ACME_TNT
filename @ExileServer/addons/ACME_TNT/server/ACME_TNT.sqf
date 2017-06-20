@@ -48,7 +48,7 @@
 						"Bo_Mk82_MI08",                 // if you want only one kind of bombs, just change all to the same classname ;-) or delete all lines except the first line
 						"Bomb_03_F",                      
 						"Bomb_04_F",
-						"Bo_GBU12_LGB"                  // remember, the last entry will have no coma, even if it is the one and only line
+						"Bo_GBU12_LGB"                  // remember, the last entry will have no comma, even if it is the one and only line
 						];
 	_dropHeight			= 75;							// from this height bombs will fall down, needs to be lower than the bomber, or bomber = boom!!!
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
