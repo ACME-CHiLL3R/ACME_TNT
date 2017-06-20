@@ -39,7 +39,7 @@ Open your **__discription.ext__** and add the following lines to it. If you alre
                 class drop
                 {
                   name="drop";
-                  sound[]={\Sounds\drop.ogg,db+6,1};
+                  sound[]={\Sounds\drop.ogg,db+10,1};
                   titles[] = {};
                 };
                 class siren1
