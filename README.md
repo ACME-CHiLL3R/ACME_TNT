@@ -31,7 +31,7 @@ If you like to have sounds of hooting sirens, put the Folder "Sounds" to your mi
 
 Step 3
 Open your discription.ext and add the following lines to it. If you have already an existing CfgSound, merge it to that one...
-
+```
             class CfgSounds
             {
                 sounds[] =
@@ -63,6 +63,7 @@ Open your discription.ext and add the following lines to it. If you have already
                 titles[] = {};
                 };
             };
+            ```
 Done.... Thats it...
 
 To edit settings open ACME_TNT\server\ACME_TNT.sqf
