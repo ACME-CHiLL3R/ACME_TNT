@@ -22,6 +22,7 @@
 	_worldCenter 		= [(_mapSize/2), (_mapSize/2)]; //now we have the center of current map
 	'centerPoint' setMarkerPos _worldCenter;			//now we get a point to start
     _spawnMarker 		= 'centerPoint';				//this is for the prewaypoints
+    uisleep 600;										// sleeps 10 minutes after first player has connected
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -32,25 +33,25 @@
 	//////////////////////////////////////////////////////////
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	_debugRPT 			= false;						// true = extended debug messages || use only to check for errors, spams the server.rpt
+	_debugRPT 			= false;						//true = extended debug messages || use only to check for errors, spams the server.rpt
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    _breakMin 			= 2700;							// minimum time between each bomb cycle in seconds |2700 = 45 minutes
-    _breakMax 			= 3600;							// maximum time between each bomb cycle in seconds |3600 = 60 minutes
+    _breakMin 			= 2700;							//minimum time between each bomb cycle in seconds |2700 = 45 minutes
+    _breakMax 			= 3600;							//maximum time between each bomb cycle in seconds |3600 = 60 minutes
     _minDist2Trader     = 1000;                         //set minimum distance to TraderZones -- set to 0 if not needed
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    _jetModel 			= selectRandom [				// change to classnames of jets you want to random select.
+    _jetModel 			= selectRandom [				//change to classnames of jets you want to random select.
 						"B_Plane_CAS_01_F",				// A-164 --- Wipeout
 						"I_Plane_Fighter_03_CAS_F",	    // A-143 --- Buzzard
 						"O_Plane_CAS_02_F"              // To-199 -- Neophron
-						];	                            // if you want only one kind of a jet, just change all to the same classname ;-) or delete all lines except the first line
+						];	                            //if you only want one kind of a jet, just change all to the same classname ;-)
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	_rdmBomb 			= selectRandom [				// change classnames of bombs random selectet.
-						"Bo_Mk82_MI08",                 // if you want only one kind of bombs, just change all to the same classname ;-) or delete all lines except the first line
-						"Bomb_03_F",                      
+	_rdmBomb 			= selectRandom [				//change to classnames of bombs you want to random select.
+						"Bo_Mk82_MI08",
+						"Bomb_03_F",
 						"Bomb_04_F",
-						"Bo_GBU12_LGB"                  // remember, the last entry will have no comma, even if it is the one and only line
+						"Bo_GBU12_LGB"
 						];
-	_dropHeight			= 75;							// from this height bombs will fall down, needs to be lower than the bomber, or bomber = boom!!!
+	_dropHeight			= 75;							//from this height bombs will fall down, needs to be lower than the bomber, or bomber = boom!!!
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_spawnPointJet 		= selectRandom [				// random spawnpoints for the jet [x,y,z] | [0,0,300] is the bottom left corner of the map, height 300
 						[0,0,300],		                // if you want to have only one point to start, just change all to the same coords :-) or delete all lines except the first line
@@ -61,43 +62,36 @@
 	_deleteJetLoc 		= selectRandom [				// random points to delete jet after bombing | for now its the top right corner of the map. For specific coords use [x,y,z]
 						[_mapSize, _mapSize,300],		// handle the same way as _spawnPointJet above
 						[_mapSize, _mapSize,300]        // <-- Last entry, no comma
-						];
+];
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_ambientSound		= true;							// <-- set to false if you want no sounds like sirens and falling bombs around 1000m of the nukezone
 	_alarm1 			= _soundPath + "Sounds\siren1.ogg";	// <-- change to matching soundpath for siren 1 -- this one plays a long siren for 2:08 minutes
     _alarm2 			= _soundPath + "Sounds\siren2.ogg";	// <-- change to matching soundpath for siren 2 -- this one plays a long siren for 1:39 minutes
     _alarm3 			= _soundPath + "Sounds\siren3.ogg";	// <-- change to matching soundpath for siren 3 -- this one plays a long siren for 0:12 minutes (it is for loop)
     _mortar 			= _soundPath + "Sounds\drop.ogg";	// <-- change to matching soundpath for falling Bomb -- this one plays a sound for 0:04 minutes
-	_sirendist			= 1000;							// distance sirens are audible at
-	_dropdist			= 500;							// distance droppingsounds are audible at
+	_sirendist			= 1000;							//distance sirens are audible at
+	_dropdist			= 500;							//distance droppingsounds are audible at
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    _randomLoc 			= true;							// true if you want random locations (be sure to set static location otherwise to your needs!)
-    _loc 				= ["BalotaAirstrip",            // change this to your needs, this is for Chernarus. No spaces allowed
-                           _dropHeight,                 // drop height of the bomb, you have set this 4 lines above
-                           4829.9868,2450.1104          // these are x and y coords, you need to change them if you want to have a static location. If you use _rdomLoc you can skip this 
-                          ];	//Set to static location format ["name",z,x,y]  //SKIP if using random locations
-    _city 				= "BalotaAirstrip";				//Set to string name of static location. Allows for custom name in rpt no spaces
-    _numberOfBombs 		= 10;							//how many bombs are dropped assuming 1 per cycle
+    _randomLoc 			= true;							//true if you want random locations (be sure to set static location otherwise!)
+    _loc 				= ["BalotaAirstrip",_dropHeight,4829.9868,2450.1104];	//Set to static location format ["name",_dropHeight,x,y]  //SKIP if using random locations
+    _city 				= "BalotaAirstrip";				//Set to string name of static location//allows for custom name in rpt no spaces
+    _numberOfBombs 		= 15;							//how many bombs are dropped assuming 1 per cycle
 	_preWaypoints 		= 2;							//add waypoints before arriving at location.
     _spawnRadius = 3000;								//radius to choose for prewaypoint (choose within x of _spawnMarker wich is centered of the map)
-    _ray = 180;											//ray of bombing//radius
-	
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //                                                                                                       //
-	//  End of Setup - dont change anything below this line until you exactly know what you are doing :-)    //
-    //                                                                                                       //
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Extended Debug - Info activated |  Sound: %1  | Map Size: %2 | Map Center: %3 | Marker for Prewaypoint: %4 |",_soundPath,_mapSize,_worldCenter,_spawnMarker];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Jet selected .......| %1 |",_jetModel];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Bomb selected ......| %1 |",_rdmBomb];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Spawn selectet .....| %1 |",_spawnPointJet];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Endpoint selectet ..| %1 |",_deleteJetLoc];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Randomlocation: ....| %1 |",_randomLoc];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | If static location: | Coords: %1 | Name_ %2",_loc,_city];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Bombs: %1 | Waypoints: %2 | Radius Waypoints: %3 | Bombs Ray: %4 |",_numberOfBombs,_preWaypoints,_spawnRadius,_ray];};
-	if (_debugRPT) then {diag_log format ["| ACME TNT | Sounds: | activated: %5 | %1 | %2 | %3 | %4 |",_alarm1,_alarm2,_alarm3,_mortar,_ambientSound];};
-	diag_log format ["| ACME TNT | %1 with %2 selected. Starting at %3",_jetModel,_rdmBomb,_spawnPointJet];
+    _ray = 100;											//ray of bombing//radius
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////End of Setup - dont change anything below this line until you exactly know what you are doing :-)//////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	if (_debugRPT) then {diag_log format ["| ACME TNT | Extended Debug - Info activated |  Sound: %1  | Map Size: %2 | Map Center: %3 | Marker for Prewaypoint: %4 |",_soundPath,_mapSize,_worldCenter,_spawnMarker];
+	 					 diag_log format ["| ACME TNT | Jet selected .......| %1 |",_jetModel];
+	 					 diag_log format ["| ACME TNT | Bomb selected ......| %1 |",_rdmBomb];
+	 					 diag_log format ["| ACME TNT | Spawn selectet .....| %1 |",_spawnPointJet];
+	 					 diag_log format ["| ACME TNT | Endpoint selectet ..| %1 |",_deleteJetLoc];
+	 					 diag_log format ["| ACME TNT | Randomlocation: ....| %1 |",_randomLoc];
+	 					 diag_log format ["| ACME TNT | If static location: | Coords: %1 | Name_ %2",_loc,_city];
+	 					 diag_log format ["| ACME TNT | Bombs: %1 | Waypoints: %2 | Radius Waypoints: %3 | Bombs Ray: %4 |",_numberOfBombs,_preWaypoints,_spawnRadius,_ray];
+	 					 diag_log format ["| ACME TNT | Sounds: | activated: %5 | %1 | %2 | %3 | %4 |",_alarm1,_alarm2,_alarm3,_mortar,_ambientSound];};
+						 diag_log format ["| ACME TNT | %1 with %2 selected. Starting at %3",_jetModel,_rdmBomb,_spawnPointJet];
 	
 	
     //Initialize //dont change this
@@ -148,8 +142,8 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
     //CREATE TARGET///////////////
-    _loc = createVehicle ["Land_HelipadEmpty_F", _coords,[], 0, "NONE"];
-    _target = createVehicle ["Land_HelipadEmpty_F",position _loc,[], 0, "NONE"];  
+    _loc = createVehicle ["HeliHEmpty", _coords,[], 0, "NONE"];
+    _target = createVehicle ["HeliHEmpty",position _loc,[], 0, "NONE"];  
     _posdebug = position _target;
     if (_debugRPT) then {diag_log format ["| ACME TNT | SEL: %1 | TARGET: %2 | CITY: %3",_posdebug,_coords,_city];};
     uisleep 2;
@@ -160,14 +154,13 @@
     _positionLand = [position _target,0,50,5,0,0,0] call BIS_fnc_findSafePos; //set jet destination
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 moving from %2 to %3 NOW!( TIME: %4 )", _bomberName,  str(_jetStart), str(_positionLand), round(time)];};
      ["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 has startet to bomb down a unknown location",_bomberName]]]] call ExileServer_system_network_send_broadcast;
-     systemchat format ["AIRRAID DETECTED! | A %1 has startet to bomb down a unknown location",_bomberName];
     //Build bomber
     _bomber = createVehicle [_jetModel,_jetStart, [], 0, "FLY"];
     _bomber engineOn true;
     _bomber flyInHeight 100;
     _bomber forceSpeed 300;
     //Create an Invisibile Landingpad near place to be bombed
-    _landingzone2 = createVehicle ["Land_HelipadEmpty_F", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
+    _landingzone2 = createVehicle ["HeliHEmpty", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 | BOMBER POS: %2 | POS LAND: %3 | TARGET: %4",str(getPosATL _landingzone2),str(getPosATL _bomber),str(_positionLand),str(getPosATL _target)];};
     _aigroup2 = creategroup civilian;
     _aigroup2 setVariable ["DMS_AllowFreezing",false];
@@ -204,13 +197,13 @@
     _bomber forceSpeed 300;
     _bomber setspeedmode "NORMAL";
 	["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city]]]] call ExileServer_system_network_send_broadcast;     
-    systemchat format ["AIRRAID DETECTED! | A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city];
+	
     ///////////////////////////////////////////////////////////////////START SIRENS/////////////////////////////////////////////////////
      
     _pos = position _target;
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
-    _speaker1 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
-    _speaker2 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
+    _speaker1 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
+    _speaker2 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
     _pos1 = position _speaker1;
     if (_ambientSound) then {playSound3D [_alarm1, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
     uisleep 2;
@@ -218,8 +211,7 @@
     _bomberDisT = _bomber distance _target;
     _sirenPlayCnt = 0;
     //begin siren loop
-	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;
-                              systemchat format ["AIRRAID DETECTED! | If you can hear the siren at %1, we advise you to RUN!!!.", _city];};
+	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;};
     while {(_bomberDisT < 10000) and (_bomberDisT > 1000) and (_sirenPlayCnt < 10)} do {
                     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
              if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};
@@ -272,7 +264,7 @@
     diag_log format ["| ACME TNT | %1 Bombing Initialize: arrived at %2!, ", _bomberName, str(getPosATL _bomber)];
     if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
                            
-    ///////////////////////////////////////////////////START BOMBING////////////////////////////////////////////////////////////////////
+     ///////////////////////////////////////////////////START BOMBING////////////////////////////////////////////////////////////////////
      
     _debugPosEs1 = getPosATL _bomber;
     _debugPosEs1 set [2, 0.1];
@@ -292,9 +284,9 @@
     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
 
             _speaker3 = createVehicle ["Land_HelipadEmpty_F",position _target,[], _ray, "NONE"];
-            if (_ambientSound) then {playSound3D [_mortar, _speaker3, false, getPos _speaker3, 15, 1, _dropdist];};
             uisleep 2;
             _espl = createVehicle [_rdmBomb,position _speaker3,[], 0, "NONE"];
+            if (_ambientSound) then {playSound3D [_mortar, _speaker3, false, getPos _speaker3, 15, 1, _dropdist];};
             if (_duration > 9 || _duration < 2) then {
                    	if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _dropdist];};
                     _pos2 = getPosATL _espl;
@@ -308,7 +300,7 @@
            
     }; // Close while loop. loop while _duration >1
     ///////////////////////////////////////////////////END SIRENS AND BOMBING, HELI LOWER TO GROUND, (SPAWN AIs), FLY AWAY//////////////////////////////////////////////////////////////
-                           
+                    
     uisleep 2;
     _bomberPos = getPosATL _bomber;
     _wpT setWPPos _bomberPos;
@@ -319,14 +311,13 @@
     uisleep 5;
     deleteWaypoint _wpT2;
    	["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["%1 has dropped all bombs and is leaving %2 now.", _bomberName,_city]]]] call ExileServer_system_network_send_broadcast;
-    systemchat format ["AIRRAID DETECTED! | %1 has dropped all bombs and is leaving %2 now.", _bomberName,_city];
     diag_log format ["| ACME TNT |  %1 has Completed Bombing at %2!", _bomberName, str(getPosATL _bomber)];
 
      
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
     uisleep 5;
     _safetyEndPos = [[_safetyPoint select 0,_safetyPoint select 1,0],0,1000,4,1,2000,0] call BIS_fnc_findSafePos;
-    _safetyEnd = createVehicle ["Land_HelipadEmpty_F", _safetyEndPos,[], 0, "NONE"];
+    _safetyEnd = createVehicle ["HeliHEmpty", _safetyEndPos,[], 0, "NONE"];
     //Adding a last Waypoint up in the North, to send bomber away after completion. Change this location (_safetyPoint) to where you want the AI to seem to originate from
     _wp3 = _aigroup2 addWaypoint [_safetyEndPos, 0];
     _wp3 setWaypointType "MOVE"; //maybe change to land?
@@ -362,8 +353,7 @@
     deletevehicle _speaker2;
     deletevehicle _loc;
     deletevehicle _target;
-	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["%1 was not the last city... We try to warn you in time.", _city]]]] call ExileServer_system_network_send_broadcast;
-    systemchat format ["AIRRAID DETECTED! | %1 was not the last city... We try to warn you in time.", _city];
+	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["Maybe more nukeattcks will come. We try to warn you in time.", _city]]]] call ExileServer_system_network_send_broadcast;
 	_rndTime = [_breakMin,_breakMax];
     _time = diag_tickTime;
     _getTime = round(random(_rndTime select 1)) max(_rndTime select 0);
