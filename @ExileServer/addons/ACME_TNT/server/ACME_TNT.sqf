@@ -170,6 +170,7 @@
     _landingzone2 = createVehicle ["Land_HelipadEmpty_F", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 | BOMBER POS: %2 | POS LAND: %3 | TARGET: %4",str(getPosATL _landingzone2),str(getPosATL _bomber),str(_positionLand),str(getPosATL _target)];};
     _aigroup2 = creategroup civilian;
+    _aigroup2 setVariable ["DMS_AllowFreezing",false];
     _jetPilot = _aigroup2 createUnit ["B_T_Pilot_F",getPos _bomber,[],0,"FORM"];
     _jetPilot moveindriver _bomber;
     _jetPilot assignAsDriver _bomber;
