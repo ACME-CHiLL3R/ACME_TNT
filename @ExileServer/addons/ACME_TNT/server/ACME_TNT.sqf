@@ -160,6 +160,7 @@
     _positionLand = [position _target,0,50,5,0,0,0] call BIS_fnc_findSafePos; //set jet destination
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 moving from %2 to %3 NOW!( TIME: %4 )", _bomberName,  str(_jetStart), str(_positionLand), round(time)];};
      ["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 has startet to bomb down a unknown location",_bomberName]]]] call ExileServer_system_network_send_broadcast;
+     systemchat format ["AIRRAID DETECTED! | A %1 has startet to bomb down a unknown location",_bomberName];
     //Build bomber
     _bomber = createVehicle [_jetModel,_jetStart, [], 0, "FLY"];
     _bomber engineOn true;
@@ -202,6 +203,7 @@
     _bomber forceSpeed 300;
     _bomber setspeedmode "NORMAL";
 	["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city]]]] call ExileServer_system_network_send_broadcast;     
+    systemchat format ["AIRRAID DETECTED! | A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city];
     ///////////////////////////////////////////////////////////////////START SIRENS/////////////////////////////////////////////////////
      
     _pos = position _target;
@@ -215,7 +217,8 @@
     _bomberDisT = _bomber distance _target;
     _sirenPlayCnt = 0;
     //begin siren loop
-	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;};
+	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;
+                              systemchat format ["AIRRAID DETECTED! | If you can hear the siren at %1, we advise you to RUN!!!.", _city];};
     while {(_bomberDisT < 10000) and (_bomberDisT > 1000) and (_sirenPlayCnt < 10)} do {
                     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
              if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};
@@ -315,6 +318,7 @@
     uisleep 5;
     deleteWaypoint _wpT2;
    	["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["%1 has dropped all bombs and is leaving %2 now.", _bomberName,_city]]]] call ExileServer_system_network_send_broadcast;
+    systemchat format ["AIRRAID DETECTED! | %1 has dropped all bombs and is leaving %2 now.", _bomberName,_city];
     diag_log format ["| ACME TNT |  %1 has Completed Bombing at %2!", _bomberName, str(getPosATL _bomber)];
 
      
@@ -357,7 +361,8 @@
     deletevehicle _speaker2;
     deletevehicle _loc;
     deletevehicle _target;
-	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["Maybe more nukeattcks will come. We try to warn you in time.", _city]]]] call ExileServer_system_network_send_broadcast;
+	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["%1 was not the last city... We try to warn you in time.", _city]]]] call ExileServer_system_network_send_broadcast;
+    systemchat format ["AIRRAID DETECTED! | %1 was not the last city... We try to warn you in time.", _city];
 	_rndTime = [_breakMin,_breakMax];
     _time = diag_tickTime;
     _getTime = round(random(_rndTime select 1)) max(_rndTime select 0);
