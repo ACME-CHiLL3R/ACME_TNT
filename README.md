@@ -1,7 +1,8 @@
 # ACME_TNT
 Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
 
-First of all ---> CREDITS
+First of all 
+##CREDITS
 ****************************************************************************************************************
                                                                                                                
  This is an adaption from "mmmyum's animated air raid dayz"
@@ -10,11 +11,11 @@ First of all ---> CREDITS
    *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   * 
                                                                                                                 
  Special thanks to:                                                                                            
-                    $p4rkY ---------- for beeing my Mentor                                                     
-                    adR1 ------------ for beeing testing and translation guy                                   
-                    Eichi ----------- for helping with the TraderZone detection                                
-                    My wife --------- for making awesome coffee                                                
-                    Saecco Minuto --- cause thats the reason why my wife could make such awesome coffee        
+                    $p4rkY --> because he is my Mentor                                                     
+                    adR1 --> because he is my testing and translation guy                                   
+                    Eichi --> for helping with the TraderZone detection                                
+                    My wife --> for making awesome coffee                                                
+                    Saecco Minuto --> because thats the reason why my wife could make such awesome coffee        
                                                                                                                
 ****************************************************************************************************************
 INSTALLATION
