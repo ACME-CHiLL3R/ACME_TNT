@@ -29,7 +29,7 @@ If you like to have sounds of hooting sirens, put the Folder "Sounds" to your mi
 
 #### Step 3
 Open your discription.ext and add the following lines to it. If you have already an existing CfgSound, merge it to that one...
-```python
+```c++
             class CfgSounds
             {
                 sounds[] =
