@@ -1,38 +1,35 @@
 # ACME_TNT
-Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
-
+>Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
+***
 First of all
-#CREDITS
-****************************************************************************************************************
+### CREDITS
+
                                                                                                                
  This is an adaption from "mmmyum's animated air raid dayz"
  So all credits for this goes to mmmyum                                                                        
-                                                                                                               
-   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   * 
-                                                                                                                
- Special thanks to:                                                                                            
-                    $p4rkY --> because he is my Mentor                                                     
-                    adR1 --> because he is my testing and translation guy                                   
-                    Eichi --> for helping with the TraderZone detection                                
-                    My wife --> for making awesome coffee                                                
-                    Saecco Minuto --> because thats the reason why my wife could make such awesome coffee        
-                                                                                                               
-****************************************************************************************************************
-INSTALLATION
+***                                                                                                             
+ #### Special thanks to:                                                                                            
+ >                  $p4rkY --> because he is my Mentor                                                     
+ >                  adR1 --> because he is my testing and translation guy                                   
+ >                  Eichi --> for helping with the TraderZone detection                                
+ >                  My wife --> for making awesome coffee                                                
+ >                  Saecco Minuto --> because thats the reason why my wife could make such awesome coffee                                                                                                                      
+***
+### INSTALLATION
 
 This step is very hard, so if you are not familiar with scripting or setting up a arma 3 server with exile, I advise you to not install this on your server.....!
 
 Just joking...
 
-Step 1
+#### Step 1
 Download the File, put the "ACME_TNT.pbo" into "@ExileServer\addons"
 
-Step 2
+#### Step 2
 If you like to have sounds of hooting sirens, put the Folder "Sounds" to your mission.pbo (for example Exile.Altis.pbo) Otherwise skip Step 3 and go to ACME_TNT.pbo\server\ACME_TNT.sqf and set line 69 (_ambientSound) to false.
 
-Step 3
+#### Step 3
 Open your discription.ext and add the following lines to it. If you have already an existing CfgSound, merge it to that one...
-```
+```python
             class CfgSounds
             {
                 sounds[] =
