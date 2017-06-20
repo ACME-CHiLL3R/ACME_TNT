@@ -2,21 +2,21 @@
 Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
 
 First of all ---> CREDITS
-*****************************************************************************************************************
-*                                                                                                               *
-* This is an adaption from "mmmyum's animated air raid dayz"                                                    *
-* So all credits for this goes to mmmyum                                                                        *
-*                                                                                                               *
-*   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   * 
-*                                                                                                               *    
-* Special thanks to:                                                                                            *
-*                    $p4rkY ---------- for beeing my Mentor                                                     *
-*                    adR1 ------------ for beeing testing and translation guy                                   *
-*                    Eichi ----------- for helping with the TraderZone detection                                *
-*                    My wife --------- for making awesome coffee                                                *
-*                    Saecco Minuto --- cause thats the reason why my wife could make such awesome coffee        *
-*                                                                                                               *
-*****************************************************************************************************************
+****************************************************************************************************************
+                                                                                                               *
+ This is an adaption from "mmmyum's animated air raid dayz"                                                    *
+ So all credits for this goes to mmmyum                                                                        *
+                                                                                                               *
+   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   * 
+                                                                                                               *    
+ Special thanks to:                                                                                            *
+                    $p4rkY ---------- for beeing my Mentor                                                     *
+                    adR1 ------------ for beeing testing and translation guy                                   *
+                    Eichi ----------- for helping with the TraderZone detection                                *
+                    My wife --------- for making awesome coffee                                                *
+                    Saecco Minuto --- cause thats the reason why my wife could make such awesome coffee        *
+                                                                                                               *
+****************************************************************************************************************
 INSTALLATION
 
 This step is very hard, so if you are not familiar with scripting or setting up a arma 3 server with exile, I advise you to not install this on your server.....!
