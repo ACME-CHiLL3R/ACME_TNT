@@ -1,8 +1,8 @@
 # ACME_TNT
 Terrible Nuke Territory - This script bombs randomized or static locations on your map. 
 
-First of all 
-##CREDITS
+First of all
+#CREDITS
 ****************************************************************************************************************
                                                                                                                
  This is an adaption from "mmmyum's animated air raid dayz"
