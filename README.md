@@ -25,7 +25,7 @@ Just joking...
 Download the File, put the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
 
 #### Step 2
-If you like to have sounds of hooting sirens, put the Folder **__Sounds__** to your mission.pbo (for example **__Exile.Altis.pbo__**) Otherwise skip ***Step 3*** and go to **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and set on line 69 *** _ambientSound*** to **__false__**.
+If you like to have sounds of hooting sirens, put the Folder **__Sounds__** to your mission.pbo (for example **__Exile.Altis.pbo__**) Otherwise skip ***Step 3*** and go to **__ACME_TNT.pbo\server\ACME_TNT.sqf__** and set on line 69 _ambientSound to **__false__**.
 
 #### Step 3
 Open your **__discription.ext__** and add the following lines to it. If you already have an existing **__CfgSound__**, merge it to that one...
