@@ -32,7 +32,9 @@ If you are using DMS - Missions AI you need to check the freeze option in the co
 Pack the folder into a pbo. Upload the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
 
 #### Step 3 
-Step 3a                                                                                                                        add the following code to your discription.ext / class CfgRemoteExec to improve an error in rpt while bomber is deleted by the script:                                                                             
+Step 3a 
+
+add the following code to your discription.ext / class CfgRemoteExec to improve an error in rpt while bomber is deleted by the script:                                                                             
 ```c++ 
 class BIS_fnc_effectKilledAirDestruction { allowedTargets=2; };
 ```                                                                                                        
@@ -61,8 +63,10 @@ class CfgRemoteExec
     };
 };
 ```                                                                                                                             
-If you are using infiSTAR you need to add this line to your CfgRemoteExec.hpp instead of discription.ext                           
-Steb 3b                                                                                                                          
+If you are using infiSTAR you need to add this line to your CfgRemoteExec.hpp instead of discription.ext
+
+Steb 3b
+
 If you like to have sounds of hooting sirens, put the Folder **__Sounds__** to your mission.pbo (for example **__Exile.Altis.pbo__**) Otherwise skip ***Step 4*** and go to **__ACME_TNT.pbo\server\ACME_TNT.sqf__** , set on line 69 _ambientSound to **__false__**.
 
 #### Step 4
