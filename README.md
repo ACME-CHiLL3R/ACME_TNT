@@ -31,7 +31,8 @@ If you are using DMS - Missions AI you need to check the freeze option in the co
 #### Step 2
 Pack the folder into a pbo. Upload the **__ACME_TNT.pbo__** into **__@ExileServer\addons__**
 
-#### Step 3                                                                                                                    Step 3a                                                                                                                        add the following code to your discription.ext / class CfgRemoteExec to improve an error in rpt while bomber is deleted by the script:                                                                             
+#### Step 3 
+Step 3a                                                                                                                        add the following code to your discription.ext / class CfgRemoteExec to improve an error in rpt while bomber is deleted by the script:                                                                             
 ```c++ 
 class BIS_fnc_effectKilledAirDestruction { allowedTargets=2; };
 ```                                                                                                        
