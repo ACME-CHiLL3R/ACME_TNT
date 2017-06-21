@@ -230,7 +230,6 @@ while {true} do {
                     _sirenPlayCnt = _sirenPlayCnt + 1;
                     uisleep 1;
             };
-´
     if (_sirenPlayCnt < 3) then {
             if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
             uisleep 7;
