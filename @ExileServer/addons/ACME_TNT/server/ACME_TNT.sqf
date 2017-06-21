@@ -32,9 +32,9 @@
 	//////////////////////////////////////////////////////////
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	_debugRPT 			= true;						//true = extended debug messages || use only to check for errors, spams the server.rpt
+	_debugRPT 			= false;						//true = extended debug messages || use only to check for errors, spams the server.rpt
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	uisleep 			  30;							// sleeps 5 minutes after first player has connected and on start of every cycle
+	uisleep 			  300;							// sleeps 5 minutes after first player has connected and on start of every cycle
     _breakMin 			= 2700;							//minimum time between each bomb cycle in seconds |2700 = 45 minutes
     _breakMax 			= 3600;							//maximum time between each bomb cycle in seconds |3600 = 60 minutes
     _minDist2Trader     = 1000;                         //set minimum distance to TraderZones -- set to 0 if not needed
