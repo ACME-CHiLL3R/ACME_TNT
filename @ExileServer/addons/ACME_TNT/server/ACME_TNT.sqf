@@ -32,9 +32,9 @@
 	//////////////////////////////////////////////////////////
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	_debugRPT 			= false;						//true = extended debug messages || use only to check for errors, spams the server.rpt
+	_debugRPT 			= true;						//true = extended debug messages || use only to check for errors, spams the server.rpt
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	uisleep 			  300;							// sleeps 5 minutes after first player has connected and on start of every cycle
+	uisleep 			  30;							// sleeps 5 minutes after first player has connected and on start of every cycle
     _breakMin 			= 2700;							//minimum time between each bomb cycle in seconds |2700 = 45 minutes
     _breakMax 			= 3600;							//maximum time between each bomb cycle in seconds |3600 = 60 minutes
     _minDist2Trader     = 1000;                         //set minimum distance to TraderZones -- set to 0 if not needed
@@ -100,7 +100,7 @@
     _y  = (_mapSize/2);
     _z  = _dropHeight;
 
-
+While {true} do {
     _duration = _numberOfBombs;
      
     //if option for random/static
@@ -221,7 +221,7 @@
 								  ["systemChatRequest", [format ["AIRRAID INFO: We advise you to leave %1 as fast as you can... RUN!!!", _city]]] call ExileServer_system_network_send_broadcast;};
     while {(_bomberDisT < 10000) and (_bomberDisT > 1000) and (_sirenPlayCnt < 10)} do {
                     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
-             if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};
+             if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};};
                     if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
                     uisleep 10;
                     _bomberDisT = _bomber distance _pos;
