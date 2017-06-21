@@ -6,7 +6,7 @@
 //........by CH!LL3R & $p4rkY........//
 //...................................//
 //............inspired by............//
-//..mmmyum's animated air raid dayz..//
+//..mmmyum's animated air raid dayz..//	["systemChatRequest", [format ["%1 has won a round of Russian Roulette!", name _playerObject]]] call ExileServer_system_network_send_broadcast;
 //...................................//
 //..........www.acme-vip.de..........//
 //...................................//
@@ -22,7 +22,6 @@
 	_worldCenter 		= [(_mapSize/2), (_mapSize/2)]; //now we have the center of current map
 	'centerPoint' setMarkerPos _worldCenter;			//now we get a point to start
     _spawnMarker 		= 'centerPoint';				//this is for the prewaypoints
-    uisleep 600;										// sleeps 10 minutes after first player has connected
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -35,6 +34,7 @@
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_debugRPT 			= false;						//true = extended debug messages || use only to check for errors, spams the server.rpt
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	uisleep 			  300;							// sleeps 5 minutes after first player has connected and on start of every cycle
     _breakMin 			= 2700;							//minimum time between each bomb cycle in seconds |2700 = 45 minutes
     _breakMax 			= 3600;							//maximum time between each bomb cycle in seconds |3600 = 60 minutes
     _minDist2Trader     = 1000;                         //set minimum distance to TraderZones -- set to 0 if not needed
@@ -42,7 +42,8 @@
     _jetModel 			= selectRandom [				//change to classnames of jets you want to random select.
 						"B_Plane_CAS_01_F",				// A-164 --- Wipeout
 						"I_Plane_Fighter_03_CAS_F",	    // A-143 --- Buzzard
-						"O_Plane_CAS_02_F"              // To-199 -- Neophron
+						"O_Plane_CAS_02_F",             // To-199 -- Neophron
+						"B_T_VTOL_01_armed_F"			// V-44 X -- Blackfish (Armed)
 						];	                            //if you only want one kind of a jet, just change all to the same classname ;-)
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_rdmBomb 			= selectRandom [				//change to classnames of bombs you want to random select.
@@ -61,8 +62,8 @@
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_deleteJetLoc 		= selectRandom [				// random points to delete jet after bombing | for now its the top right corner of the map. For specific coords use [x,y,z]
 						[_mapSize, _mapSize,300],		// handle the same way as _spawnPointJet above
-						[_mapSize, _mapSize,300]        // <-- Last entry, no comma
-];
+						[_mapSize, _mapSize,300] 		// <-- Last entry, no comma
+						];
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_ambientSound		= true;							// <-- set to false if you want no sounds like sirens and falling bombs around 1000m of the nukezone
 	_alarm1 			= _soundPath + "Sounds\siren1.ogg";	// <-- change to matching soundpath for siren 1 -- this one plays a long siren for 2:08 minutes
@@ -95,9 +96,9 @@
 	
 	
     //Initialize //dont change this
-    _xx = 4829.9868;
-    _y = 2450.1104;
-    _z = _dropHeight;
+    _xx = (_mapSize/2);
+    _y  = (_mapSize/2);
+    _z  = _dropHeight;
 
 
     _duration = _numberOfBombs;
@@ -110,7 +111,7 @@
                                                 {_lct = _forEachIndex;
                                                     {   _lcs pushBack [text _x, _lct, locationPosition _x, direction _x, size _x, rectangular _x];
                                                     } forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_x], worldSize];    
-                                                } forEach ["NameCity", "NameCityCapital"];
+                                                } forEach ["NameCity", "NameCityCapital", "Airport", "NameMarine"];
                                                 _randomlcs = selectRandom _lcs;
                                                 _randomlcsoutput = [_randomlcs select 0,_randomlcs select 2];
                                                 _randomlocCity = _randomlcsoutput select 0;
@@ -153,7 +154,8 @@
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 | TYPE: %4 Start at %2 | End at %3",_bomberName,str(_jetStart),str(_safetyPoint),_jetModel];};
     _positionLand = [position _target,0,50,5,0,0,0] call BIS_fnc_findSafePos; //set jet destination
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 moving from %2 to %3 NOW!( TIME: %4 )", _bomberName,  str(_jetStart), str(_positionLand), round(time)];};
-     ["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 has startet to bomb down a unknown location",_bomberName]]]] call ExileServer_system_network_send_broadcast;
+     ["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 has startet to bomb down %2",_bomberName,_city]]]] call ExileServer_system_network_send_broadcast;
+     ["systemChatRequest", [format ["Airraid detected: A %1 has startet to bomb down %2",_bomberName,_city]]] call ExileServer_system_network_send_broadcast;
     //Build bomber
     _bomber = createVehicle [_jetModel,_jetStart, [], 0, "FLY"];
     _bomber engineOn true;
@@ -197,6 +199,7 @@
     _bomber forceSpeed 300;
     _bomber setspeedmode "NORMAL";
 	["toastRequest", ["ErrorTitleAndText", ["AIRRAID DETECTED!", format ["A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city]]]] call ExileServer_system_network_send_broadcast;     
+     ["systemChatRequest", [format ["Airraid detected: A %1 is on his way to bomb down %2. We advise you to leave this area immediately!",_bomberName, _city]]] call ExileServer_system_network_send_broadcast;
 	
     ///////////////////////////////////////////////////////////////////START SIRENS/////////////////////////////////////////////////////
      
@@ -209,9 +212,13 @@
     uisleep 2;
     if (_ambientSound) then {playSound3D [_alarm2, _speaker2, false, getPos _speaker2, 15, 1, _sirendist];};
     _bomberDisT = _bomber distance _target;
+    uisleep 5;
     _sirenPlayCnt = 0;
     //begin siren loop
-	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;};
+	if (_ambientSound) then {["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["If you can hear the siren at %1, we advise you to RUN!!!.", _city]]]] call ExileServer_system_network_send_broadcast;
+							 ["systemChatRequest", [format ["AIRRAID INFO: If you can hear the siren at %1, we advise you to RUN!!!", _city]]] call ExileServer_system_network_send_broadcast;	
+							}else{["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["We advise you to leave %1 as fast as you can run!.", _city]]]] call ExileServer_system_network_send_broadcast;
+								  ["systemChatRequest", [format ["AIRRAID INFO: We advise you to leave %1 as fast as you can... RUN!!!", _city]]] call ExileServer_system_network_send_broadcast;};
     while {(_bomberDisT < 10000) and (_bomberDisT > 1000) and (_sirenPlayCnt < 10)} do {
                     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
              if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};
@@ -310,7 +317,8 @@
     _wpT2 setWPPos _bomberPos;
     uisleep 5;
     deleteWaypoint _wpT2;
-   	["toastRequest", ["ErrorTitleAndText", ["AIRRAID INFO!", format ["%1 has dropped all bombs and is leaving %2 now.", _bomberName,_city]]]] call ExileServer_system_network_send_broadcast;
+   	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["%1 is running out of bombs and leaving %2 now.", _bomberName,_city]]]] call ExileServer_system_network_send_broadcast;
+   	["systemChatRequest", [format ["AIRRAID INFO: %1 is running out of bombs and leaving %2 now.", _bomberName,_city]]] call ExileServer_system_network_send_broadcast;
     diag_log format ["| ACME TNT |  %1 has Completed Bombing at %2!", _bomberName, str(getPosATL _bomber)];
 
      
@@ -353,8 +361,9 @@
     deletevehicle _speaker2;
     deletevehicle _loc;
     deletevehicle _target;
-	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["Maybe more nukeattcks will come. We try to warn you in time.", _city]]]] call ExileServer_system_network_send_broadcast;
-	_rndTime = [_breakMin,_breakMax];
+	["toastRequest", ["InfoTitleAndText", ["AIRRAID INFO!", format ["%1 is safe again... Which city will be the next target?", _city]]]] call ExileServer_system_network_send_broadcast;
+   	["systemChatRequest", [format ["AIRRAID INFO: %1 is safe again... Which city will be the next target?", _city]]] call ExileServer_system_network_send_broadcast;
+	_rndTime = [_breakMax,_breakMin];
     _time = diag_tickTime;
     _getTime = round(random(_rndTime select 1)) max(_rndTime select 0);
     diag_log format ["| ACME TNT | TNT sleeps for %1 |",_getTime];
