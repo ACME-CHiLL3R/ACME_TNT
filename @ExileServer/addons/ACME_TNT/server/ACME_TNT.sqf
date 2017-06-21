@@ -99,8 +99,9 @@
     _xx = (_mapSize/2);
     _y  = (_mapSize/2);
     _z  = _dropHeight;
-
-
+	
+while {true} do {
+	
     _duration = _numberOfBombs;
      
     //if option for random/static
@@ -221,7 +222,7 @@
 								  ["systemChatRequest", [format ["AIRRAID INFO: We advise you to leave %1 as fast as you can... RUN!!!", _city]]] call ExileServer_system_network_send_broadcast;};
     while {(_bomberDisT < 10000) and (_bomberDisT > 1000) and (_sirenPlayCnt < 10)} do {
                     if (!alive _bomber) exitWith{diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName]};
-             if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];};
+             if (_debugRPT) then {if (_ambientSound) then {diag_log format ["| ACME TNT | Playing Siren at %1 | Siren Nam %2 | Loop Num: %3",str(getPosATL _speaker1),_sirendist,_sirenPlayCnt];}; };
                     if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
                     uisleep 10;
                     _bomberDisT = _bomber distance _pos;
@@ -229,6 +230,7 @@
                     _sirenPlayCnt = _sirenPlayCnt + 1;
                     uisleep 1;
             };
+´
     if (_sirenPlayCnt < 3) then {
             if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
             uisleep 7;
