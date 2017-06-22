@@ -12,7 +12,6 @@
 //...................................//
 /////////////////////////////////////*/
   
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
     diag_log format ["| ACME TNT | Terrible Nuke Territory ready to start. Waiting for first Player to start.............."];
 while {true} do {
@@ -24,7 +23,6 @@ while {true} do {
     'centerPoint' setMarkerPos _worldCenter;             //now we get a point to start
     _spawnMarker         = 'centerPoint';                //this is for the prewaypoints
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
     
     //////////////////////////////////////////////////////////
     //                                                      //
@@ -103,35 +101,35 @@ while {true} do {
     _duration = _numberOfBombs;
      
     //if option for random/static
-   if (_randomLoc) then {
-      _noValidPos = true;   
-      While {_noValidPos} do { 
-          _lcs = [];
-          {
-              _lct = _forEachIndex;
-              {
-			      _lcs pushBack [text _x, _lct, locationPosition _x, direction _x, size _x, rectangular _x];
-              } forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_x], worldSize];    
-          } forEach ["NameCity", "NameCityCapital", "Airport", "NameMarine"];
-          _randomlcs = selectRandom _lcs;
-          _randomlcsoutput = [_randomlcs select 0,_randomlcs select 2];
-          _randomlocCity = _randomlcsoutput select 0;
-          _randomLocz = _dropHeight;
-          _randomlocxx = (_randomlcsoutput select 1) select 0;
-          _randomlocy = (_randomlcsoutput select 1) select 1;
-          _loc = [_randomlocCity, _randomLocz, _randomlocxx, _randomlocy];
-          _city = _loc select 0;
-          _z = _dropHeight;
-          _xx = _loc select 2;
-          _y = _loc select 3;
-          _coords = [_xx,_y,_z];
-          if ([_coords, _minDist2Trader] call ExileClient_util_world_isTraderZoneInRange) then {
-              _noValidPos = true;
-          }else{
-              _noValidPos = false;
-          };
-      };
-                diag_log format ["| ACME TNT | RANDOM WORLDSPACE: %1 | %2",_city,_coords];
+    if (_randomLoc) then {
+        _noValidPos = true;   
+        While {_noValidPos} do { 
+            _lcs = [];
+            {
+                _lct = _forEachIndex;
+                {
+                    _lcs pushBack [text _x, _lct, locationPosition _x, direction _x, size _x, rectangular _x];
+                } forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_x], worldSize];    
+            } forEach ["NameCity", "NameCityCapital", "Airport", "NameMarine"];
+            _randomlcs = selectRandom _lcs;
+            _randomlcsoutput = [_randomlcs select 0,_randomlcs select 2];
+            _randomlocCity = _randomlcsoutput select 0;
+            _randomLocz = _dropHeight;
+            _randomlocxx = (_randomlcsoutput select 1) select 0;
+            _randomlocy = (_randomlcsoutput select 1) select 1;
+            _loc = [_randomlocCity, _randomLocz, _randomlocxx, _randomlocy];
+            _city = _loc select 0;
+            _z = _dropHeight;
+            _xx = _loc select 2;
+            _y = _loc select 3;
+            _coords = [_xx,_y,_z];
+            if ([_coords, _minDist2Trader] call ExileClient_util_world_isTraderZoneInRange) then {
+                _noValidPos = true;
+            }else{
+                _noValidPos = false;
+            };
+        };
+        diag_log format ["| ACME TNT | RANDOM WORLDSPACE: %1 | %2",_city,_coords];
     }else{
         _z =_dropHeight;
         _xx = _loc select 2;
