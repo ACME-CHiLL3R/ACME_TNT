@@ -78,7 +78,7 @@ Open your **__discription.ext__** and add the following lines to it. If you alre
                 class drop
                 {
                   name="drop";
-                  sound[]={\Sounds\drop.ogg,db+10,1};
+                  sound[]={"@a3\data_f_curator\sound\cfgsounds\incoming2.wss",db+10,1};
                   titles[] = {};
                 };
                 class siren1
