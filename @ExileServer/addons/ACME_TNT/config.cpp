@@ -1,5 +1,5 @@
 class CfgPatches {
-	class ACME_TNT {
+	class acme_tnt {
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
@@ -9,7 +9,7 @@ class CfgPatches {
 class CfgFunctions {
 	class acmetnt {
 		class main {
-			file = "\x\addons\ACME_TNT\init";
+			file = "\x\addons\acme_tnt\init";
 			class init {
 				postInit = 1;
 			};
