@@ -5,25 +5,25 @@ class CfgSounds
 	    class drop
 	    {
 		    name="drop";
-		    sound[]={\Sounds\drop.ogg,db+10,1};
+            sound[]={"@a3\data_f_curator\sound\cfgsounds\incoming2.wss",db+10,1};
 		    titles[] = {};
 	    };
 	    class siren1
 	    {
 		    name="siren1";
-		    sound[]={\Sounds\siren1.ogg,db+6,1};
+		    sound[]={"\Sounds\siren1.ogg",db+6,1};
 		    titles[] = {};
 	    };
 	    class siren2
 	    {
 		    name="siren2";
-		    sound[]={\Sounds\siren2.ogg,db+6,1};
+		    sound[]={"\Sounds\siren2.ogg",db+6,1};
 		    titles[] = {};
 	    };
 	        class siren3
 	    {
 		    name="siren3";
-		    sound[]={\Sounds\siren3.ogg,db+6,1};
+		    sound[]={"\Sounds\siren3.ogg",db+6,1};
 		    titles[] = {};
 	    };
 };
