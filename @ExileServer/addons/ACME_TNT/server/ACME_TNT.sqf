@@ -285,6 +285,7 @@ while {true} do {
     _debugPosEs1 = getPosATL _bomber;
     _debugPosEs1 set [2, 0.1];
     uisleep 1;
+    _esp3 = createVehicle [(selectRandom _rdmBomb),_debugPosEs1,[], 0, "NONE"];
     _posEsp3 = position _esp3;
     if (_debugRPT) then {diag_log format ["| ACME TNT |  DEBUG ESP3: %1 | debugPosEs1: %2",_posEsp3,_debugPosEs1];};
     ///////////////////////////debug above
@@ -300,6 +301,7 @@ while {true} do {
 
         _speaker3 = createVehicle ["Land_HelipadEmpty_F",position _target,[], _ray, "NONE"];
         uisleep 2;
+        _espl = createVehicle [(selectRandom _rdmBomb),position _speaker3,[], 0, "NONE"];
         if (_ambientSound) then {playSound3D [_mortar, _speaker3, false, getPos _speaker3, 15, 1, _dropdist];};
         if (_duration > 9 || _duration < 2) then {
             if (_ambientSound) then {playSound3D [_alarm3, _speaker1, false, getPos _speaker1, 15, 1, _dropdist];};
