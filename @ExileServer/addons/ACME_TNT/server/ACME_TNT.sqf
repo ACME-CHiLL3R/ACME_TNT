@@ -1,4 +1,4 @@
-/*/////////////////////////////////////
+///////////////////////////////////////
 //...................................//
 //...............ACME's..............//
 //................TNT................//
@@ -6,11 +6,11 @@
 //........by CH!LL3R & $p4rkY........//
 //...................................//
 //............inspired by............//
-//..mmmyum's animated air raid dayz..//    ["systemChatRequest", [format ["%1 has won a round of Russian Roulette!", name _playerObject]]] call ExileServer_system_network_send_broadcast;
+//..mmmyum's animated air raid dayz..//
 //...................................//
 //..........www.acme-vip.de..........//
 //...................................//
-/////////////////////////////////////*/
+///////////////////////////////////////
   
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
     diag_log format ["| ACME TNT | Terrible Nuke Territory ready to start. Waiting for first Player to start.............."];
@@ -33,10 +33,10 @@ while {true} do {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     _debugRPT             = false;                        //true = extended debug messages || use only to check for errors, spams the server.rpt
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    uisleep               300;                            // sleeps 5 minutes after first player has connected and on start of every cycle
-    _breakMin             = 2700;                         //minimum time between each bomb cycle in seconds |2700 = 45 minutes
-    _breakMax             = 3600;                         //maximum time between each bomb cycle in seconds |3600 = 60 minutes
-    _minDist2Trader        = 1000;                        //set minimum distance to TraderZones -- set to 0 if not needed
+    uisleep              300;                            // sleeps 5 minutes after first player has connected and on start of every cycle
+    _breakMin            = 2700;                         //minimum time between each bomb cycle in seconds |2700 = 45 minutes
+    _breakMax            = 3600;                         //maximum time between each bomb cycle in seconds |3600 = 60 minutes
+    _minDist2Trader      = 1000;                         //set minimum distance to TraderZones -- set to 0 if not needed
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     _jetModel            = selectRandom [                  //change to classnames of jets you want to random select.
                         "B_Plane_CAS_01_F",                // A-164 --- Wipeout
@@ -51,7 +51,7 @@ while {true} do {
                         "Bomb_04_F",
                         "Bo_GBU12_LGB"
                         ];
-    _dropHeight            = 75;                            //from this height bombs will fall down, needs to be lower than the bomber, or bomber = boom!!!
+    _dropHeight         = 75;                            //from this height bombs will fall down, needs to be lower than the bomber, or bomber = boom!!!
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     _spawnPointJet         = selectRandom [               // random spawnpoints for the jet [x,y,z] | [0,0,300] is the bottom left corner of the map, height 300
                         [0,0,300],                        // if you want to have only one point to start, just change all to the same coords :-) or delete all lines except the first line
