@@ -42,6 +42,11 @@ while {true} do {
                         "B_Plane_CAS_01_F",                // A-164 --- Wipeout
                         "I_Plane_Fighter_03_CAS_F",        // A-143 --- Buzzard
                         "O_Plane_CAS_02_F",                // To-199 -- Neophron
+                        "B_Plane_Fighter_01_F",            // F/A-181 Black Wasp II
+                        "B_Plane_Fighter_01_Stealth_F",    // F/A-181 Black Wasp II (Tarn)
+                        "O_Plane_Fighter_02_F",            // To-201 Shikra
+                        "O_Plane_Fighter_02_Stealth_F",    // To-201 Shikra (Tarn)
+                        "I_Plane_Fighter_04_F",            // A-149 Gryphon
                         "B_T_VTOL_01_armed_F"              // V-44 X -- Blackfish (Armed)
                         ];                                 //if you only want one kind of a jet, just change all to the same classname ;-)
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
