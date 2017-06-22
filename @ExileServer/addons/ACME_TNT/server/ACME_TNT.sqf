@@ -78,8 +78,8 @@ while {true} do {
     _dropdist           = 500;                                 //distance droppingsounds are audible at
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     _randomLoc          = true;                            //true if you want random locations (be sure to set static location otherwise!)
-    _loc                = ["Telos Military",_dropHeight,16083.51,17000.621];    //Set to static location format ["name",_dropHeight,x,y]  //SKIP if using random locations
-    _city               = "Telos Military";                //Set to string name of static location//allows for custom name in rpt no spaces
+    _loc                = ["TelosMilitary",_dropHeight,16083.51,17000.621];    //Set to static location format ["name",_dropHeight,x,y]  //SKIP if using random locations
+    _city               = "TelosMilitary";                 //Set to string name of static location//allows for custom name in rpt no spaces
     _numberOfBombs      = 15;                              //how many bombs are dropped assuming 1 per cycle
     _preWaypoints       = 2;                               //add waypoints before arriving at location.
     _spawnRadius        = 3000;                            //radius to choose for prewaypoint (choose within x of _spawnMarker wich is centered of the map)
