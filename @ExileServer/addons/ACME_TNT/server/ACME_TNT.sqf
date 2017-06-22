@@ -161,6 +161,8 @@ while {true} do {
     //Build bomber
     _bomber = createVehicle [_jetModel,_jetStart, [], 0, "FLY"];
     _bomber engineOn true;
+    //Lock for Security-Reasons
+    _bomber lock 2;
     _bomber flyInHeight 100;
     _bomber forceSpeed 300;
     //Create an Invisibile Landingpad near place to be bombed
