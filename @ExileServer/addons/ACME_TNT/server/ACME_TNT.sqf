@@ -70,6 +70,7 @@ while {true} do {
 	_alarm1 			= _soundPath + "Sounds\siren1.ogg";	// <-- change to matching soundpath for siren 1 -- this one plays a long siren for 2:02 minutes
 	_alarm2 			= _soundPath + "Sounds\siren2.ogg";	// <-- change to matching soundpath for siren 2 -- this one plays a long siren for 1:35 minutes
 	_alarm3 			= _soundPath + "Sounds\siren3.ogg";	// <-- change to matching soundpath for siren 3 -- this one plays a long siren for 0:11 minutes (it is for loop)
+	_mortar			    = "a3\data_f_curator\sound\cfgsounds\incoming2.wss";	// <-- change to matching soundpath for falling Bomb -- this one plays a sound for 0:04 minutes
 	_sirendist			= 1000;							//distance sirens are audible at
 	_dropdist			= 500;							//distance droppingsounds are audible at
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +79,8 @@ while {true} do {
 	_city 				= "Telos Military";				//Set to string name of static location//allows for custom name in rpt no spaces
 	_numberOfBombs 		= 15;							//how many bombs are dropped assuming 1 per cycle
 	_preWaypoints 		= 2;							//add waypoints before arriving at location.
+	_spawnRadius        = 3000;							//radius to choose for prewaypoint (choose within x of _spawnMarker wich is centered of the map)
+	_ray                = 100;							//ray of bombing//radius
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////End of Setup - dont change anything below this line until you exactly know what you are doing :-)//////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
