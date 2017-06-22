@@ -11,11 +11,12 @@
 //..........www.acme-vip.de..........//
 //...................................//
 /////////////////////////////////////*/
-     
+  
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	 
-    private ["_speaker1","_speaker2","_speaker3","_dropHeight","_rndTime","_time","_getTime","_breakMin","_breakMax","_rdmBomb","_randomlcs","_randomlcsoutput","_randomlocCity","_randomLocz","_randomlocxx","_randomlocy","_lcs","_lct","_alarm1","_alarm2","_alarm3","_mortar","_dropdist","_soundPath","_deleteJetLoc","_spawnPointJet","_preWaypointPos","_spawnMarker","_spawnRadius","_wp","_espl","_sound","_duration","_loc","_city","_z","_xx","_y","_coords","_target","_posdebug","_jetModel","_jetStart","_safetyPoint","_bomberName","_positionLand","_bomber","_landingzone2","_aigroup2","_jetPilot","_wp2","_pos","_pos1","_wp3","_preWaypoints","_sirendist","_ray","_pos2","_targetpos","_poswhistl","_citySwing","_wpT","_citySwing2","_wpT2","_wpLand","_numberOfBombs","_esp3","_posEsp3","_debugPosEs1","_bomberDisT","_sirenPlayCnt","_randomLoc","_bomberPos","_debugRPT","_EndCounter","_safetyEndPos","_safetyEnd"];
-    diag_log format ["| ACME TNT | Terrible Nuke Territory ready to start. Waiting for first Player to start.............."];
+	diag_log format ["| ACME TNT | Terrible Nuke Territory ready to start. Waiting for first Player to start.............."];
+	while {true} do {
+	private ["_speaker1","_speaker2","_speaker3","_dropHeight","_rndTime","_time","_getTime","_breakMin","_breakMax","_rdmBomb","_randomlcs","_randomlcsoutput","_randomlocCity","_randomLocz","_randomlocxx","_randomlocy","_lcs","_lct","_alarm1","_alarm2","_alarm3","_mortar","_dropdist","_soundPath","_deleteJetLoc","_spawnPointJet","_preWaypointPos","_spawnMarker","_spawnRadius","_wp","_espl","_sound","_duration","_loc","_city","_z","_xx","_y","_coords","_target","_posdebug","_jetModel","_jetStart","_safetyPoint","_bomberName","_positionLand","_bomber","_landingzone2","_aigroup2","_jetPilot","_wp2","_pos","_pos1","_wp3","_preWaypoints","_sirendist","_ray","_pos2","_targetpos","_poswhistl","_citySwing","_wpT","_citySwing2","_wpT2","_wpLand","_numberOfBombs","_esp3","_posEsp3","_debugPosEs1","_bomberDisT","_sirenPlayCnt","_randomLoc","_bomberPos","_debugRPT","_EndCounter","_safetyEndPos","_safetyEnd"];
 	waitUntil{({isPlayer _x} count playableUnits) >= 1};	//wait until server has one or more player
 	_soundPath 			= [(str missionConfigFile), 0, -15] call BIS_fnc_trimString;	//we need this for soundfiles, do not edit... change soundpath down by alarm1, alarm2 ando on, if needed
 	_mapSize = getNumber(configFile >> "CfgWorlds" >> worldName >> "MapSize"); //get the total size of current map
@@ -66,16 +67,16 @@
 						];
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	_ambientSound		= true;							// <-- set to false if you want no sounds like sirens and falling bombs around 1000m of the nukezone
-	_alarm1 			= _soundPath + "Sounds\siren1.ogg";	// <-- change to matching soundpath for siren 1 -- this one plays a long siren for 2:08 minutes
-    _alarm2 			= _soundPath + "Sounds\siren2.ogg";	// <-- change to matching soundpath for siren 2 -- this one plays a long siren for 1:39 minutes
-    _alarm3 			= _soundPath + "Sounds\siren3.ogg";	// <-- change to matching soundpath for siren 3 -- this one plays a long siren for 0:12 minutes (it is for loop)
-    _mortar 			= _soundPath + "Sounds\drop.ogg";	// <-- change to matching soundpath for falling Bomb -- this one plays a sound for 0:04 minutes
+	_alarm1 			= _soundPath + "Sounds\siren1.ogg";	// <-- change to matching soundpath for siren 1 -- this one plays a long siren for 2:02 minutes
+    _alarm2 			= _soundPath + "Sounds\siren2.ogg";	// <-- change to matching soundpath for siren 2 -- this one plays a long siren for 1:35 minutes
+    _alarm3 			= _soundPath + "Sounds\siren3.ogg";	// <-- change to matching soundpath for siren 3 -- this one plays a long siren for 0:11 minutes (it is for loop)
+    _mortar             = "a3\data_f_curator\sound\cfgsounds\incoming2.wss";	// <-- change to matching soundpath for falling Bomb -- this one plays a sound for 0:04 minutes
 	_sirendist			= 1000;							//distance sirens are audible at
 	_dropdist			= 500;							//distance droppingsounds are audible at
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     _randomLoc 			= true;							//true if you want random locations (be sure to set static location otherwise!)
-    _loc 				= ["BalotaAirstrip",_dropHeight,4829.9868,2450.1104];	//Set to static location format ["name",_dropHeight,x,y]  //SKIP if using random locations
-    _city 				= "BalotaAirstrip";				//Set to string name of static location//allows for custom name in rpt no spaces
+    _loc 				= ["Telos Military",_dropHeight,16083.51,17000.621];	//Set to static location format ["name",_dropHeight,x,y]  //SKIP if using random locations
+    _city 				= "Telos Military";				//Set to string name of static location//allows for custom name in rpt no spaces
     _numberOfBombs 		= 15;							//how many bombs are dropped assuming 1 per cycle
 	_preWaypoints 		= 2;							//add waypoints before arriving at location.
     _spawnRadius = 3000;								//radius to choose for prewaypoint (choose within x of _spawnMarker wich is centered of the map)
@@ -99,8 +100,7 @@
     _xx = (_mapSize/2);
     _y  = (_mapSize/2);
     _z  = _dropHeight;
-
-While {true} do {
+	
     _duration = _numberOfBombs;
      
     //if option for random/static
@@ -143,8 +143,8 @@ While {true} do {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
     //CREATE TARGET///////////////
-    _loc = createVehicle ["HeliHEmpty", _coords,[], 0, "NONE"];
-    _target = createVehicle ["HeliHEmpty",position _loc,[], 0, "NONE"];  
+    _loc = createVehicle ["Land_HelipadEmpty_F", _coords,[], 0, "NONE"];
+    _target = createVehicle ["Land_HelipadEmpty_F",position _loc,[], 0, "NONE"];  
     _posdebug = position _target;
     if (_debugRPT) then {diag_log format ["| ACME TNT | SEL: %1 | TARGET: %2 | CITY: %3",_posdebug,_coords,_city];};
     uisleep 2;
@@ -162,7 +162,7 @@ While {true} do {
     _bomber flyInHeight 100;
     _bomber forceSpeed 300;
     //Create an Invisibile Landingpad near place to be bombed
-    _landingzone2 = createVehicle ["HeliHEmpty", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
+    _landingzone2 = createVehicle ["Land_HelipadEmpty_F", [_positionLand select 0, _positionLand select 1,0], [], 0, "CAN_COLLIDE"]; //_targets x,y
     if (_debugRPT) then {diag_log format ["| ACME TNT | %1 | BOMBER POS: %2 | POS LAND: %3 | TARGET: %4",str(getPosATL _landingzone2),str(getPosATL _bomber),str(_positionLand),str(getPosATL _target)];};
     _aigroup2 = creategroup civilian;
     _aigroup2 setVariable ["DMS_AllowFreezing",false];
@@ -205,8 +205,8 @@ While {true} do {
      
     _pos = position _target;
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
-    _speaker1 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
-    _speaker2 = createVehicle ["HeliHEmpty",position _target,[], 0, "NONE"];
+    _speaker1 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
+    _speaker2 = createVehicle ["Land_HelipadEmpty_F",position _target,[], 0, "NONE"];
     _pos1 = position _speaker1;
     if (_ambientSound) then {playSound3D [_alarm1, _speaker1, false, getPos _speaker1, 15, 1, _sirendist];};
     uisleep 2;
@@ -325,7 +325,7 @@ While {true} do {
     if (!alive _bomber) then {diag_log format ["| ACME TNT | %1 DESTROYED...",_bomberName];};
     uisleep 5;
     _safetyEndPos = [[_safetyPoint select 0,_safetyPoint select 1,0],0,1000,4,1,2000,0] call BIS_fnc_findSafePos;
-    _safetyEnd = createVehicle ["HeliHEmpty", _safetyEndPos,[], 0, "NONE"];
+    _safetyEnd = createVehicle ["Land_HelipadEmpty_F", _safetyEndPos,[], 0, "NONE"];
     //Adding a last Waypoint up in the North, to send bomber away after completion. Change this location (_safetyPoint) to where you want the AI to seem to originate from
     _wp3 = _aigroup2 addWaypoint [_safetyEndPos, 0];
     _wp3 setWaypointType "MOVE"; //maybe change to land?
